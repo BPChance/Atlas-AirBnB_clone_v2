@@ -18,10 +18,12 @@ class State(BaseModel, Base):
     else:
         name = ""
 
-    
     @property
     def cities(self):
-        """ getter method returns list of city objects linked to current State """
+        """
+        getter method returns list of
+        city objects linked to current State
+        """
         city_list = []
         for city in models.storage.all(City).values():
             if city.state_id == self.id:

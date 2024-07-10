@@ -1,54 +1,55 @@
 <!DOCTYPE HTML>
-<HTML LANG="en">
-<HEAD>
-    <TITLE>AirBnB Clone</TITLE>
-    <LINK REL="shortcut icon" HREF="images/icon.ico">
-    <LINK REL="stylesheet" HREF="styles/4-common.css"/>
-    <LINK REL="stylesheet" HREF="styles/3-header.css"/>
-    <LINK REL="stylesheet" HREF="styles/3-footer.css"/>
-    <LINK REL="stylesheet" HREF="styles/6-filters.css"/>
-</HEAD>
-<BODY>
+<HTML lang="en">
+  <HEAD>
+    <META CHARSET="utf-8">
+    <TITLE>AirBnb Clone</TITLE>
+    <LINK REL="stylesheet" HREF="styles/4-common.css">
+    <LINK REL="stylesheet" HREF="styles/3-header.css">
+    <LINK REL="stylesheet" HREF="styles/3-footer.css">
+    <LINK REL="stylesheet" HREF="styles/6-filters.css">
+    <LINK REL="icon" HREF="images/icon.png" TYPE="image/png">
+  </HEAD>
+  <BODY>
     <HEADER>
-        <DIV ID="header_logo"></DIV>
+      <DIV class="logo">
+      </DIV>
     </HEADER>
-    <DIV CLASS="container">
-        <SECTION CLASS="filters">
-            <BUTTON>Search</BUTTON>
-            <DIV CLASS="locations">
-                <H3>States</H3>
-                <H4>&nbsp;</H4>
-                <UL CLASS="popover">
-                    <LI>
-                        <H2>Arizona</H2>
-                        <UL>
-                            <LI><H4>Page</H4></LI>
-                            <LI><H4>Page2</H4></LI>
-                        </UL>
-                    </LI>
-                    <LI>
-                        <H2>California</H2>
-                        <UL>
-                            <LI><H4>San Francisco</H4></LI>
-                            <LI><H4>Los Altos</H4></LI>
-                        </UL>
-                    </LI>
+    <DIV class="container">
+      <SECTION class="filters">
+        <DIV class="locations">
+          <H3>States</H3>
+          <H4>&nbsp;</H4>
+          <UL class="popover">
+            {% for state in states|sort(attribute='name') %}
+              <LI>
+                <H2>{{ state.name }}:</H2>
+                <UL>
+                  {% for city in state.cities|sort(attribute='name') %}
+                    <LI>{{ city.name }}</LI>
+                  {% endfor %}
                 </UL>
-            </DIV>
-            <DIV CLASS="amenities">
-                <H3>Amenities</H3>
-                <H4>&nbsp;</H4>
-                <UL CLASS="popover">
-                    <LI><H4>Internet</H4></LI>
-                    <LI><H4>TV</H4></LI>
-                    <LI><H4>Kitchen</H4></LI>
-                    <LI><H4>Iron</H4></LI>
-                </UL>
-            </DIV>
-        </SECTION>
+              </LI>
+            {% endfor %}
+          </UL>
+        </DIV>
+        <DIV CLASS="amenities">
+          <H3>Amenities</H3>
+          <H4>&nbsp;</H4>
+          <UL CLASS="popover">
+            {% for amenity in amenities|sort(attribute='name') %}
+              <LI>{{ amenity.name }}</LI>
+            {% endfor %}
+          </UL>
+        </DIV>
+        <BUTTON>
+          Search
+        </BUTTON>
+      </SECTION>
     </DIV>
     <FOOTER>
-        <P>Holberton School</P>
+      <P>
+        Holberton School
+      </P>
     </FOOTER>
-</BODY>
+  </BODY>
 </HTML>
